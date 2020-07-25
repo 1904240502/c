@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "gcc.exe build active file",
-			"command": "D:\\VScode\\MinGW\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gcc.exe",
+			"command": "D:\\VS code\\MinGW\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\gcc.exe",
 			"args": [
 				"-g",
 				"${file}",

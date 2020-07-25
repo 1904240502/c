@@ -5,6 +5,37 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "编译",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "cmd",
+            "args": [
+                "/c"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "preLaunchTask": "gcc.exe build active file"
+        },
+        {
+            "name": "执行",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "cmd",
+            "args": [
+                "/c",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "&",
+                "pause"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true
+        },
+        {
             "name": "gcc.exe - 生成和调试活动文件",
             "type": "cppdbg",
             "request": "launch",

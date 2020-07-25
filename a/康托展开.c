@@ -22,9 +22,9 @@ int factorial_function(int num)
 int main()
 {
         int i=0,j;
-        int count=0,k;
-        int sum=0;
-        char num[10];
+        int count=0,k;                 //位数，a[n]:比其小的个数
+        int sum=0;                     //全排序的位数
+        char num[10];                  //数字
         printf("请输入数字：");
         scanf("%s",num);
         while(num[i]!=NULL)
