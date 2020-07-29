@@ -9,7 +9,6 @@
     幂指数为奇数时求余需要再乘底数再求模
     如：7^13 = (7^6)^2*7; ->多乘一个7
 */
-
 #include<stdio.h>
 int x,n,m,sum;
 void init()
