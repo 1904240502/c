@@ -1,75 +1,63 @@
 #include<stdio.h>
-#include<math.h>
- 
 #define Max 100
-int x,num;
-int m;
+int num[Max];//*********************存储被除数
+int val[Max];//*********************存储被除数差值
+int n,i;
  
-void init()
+void init(int num[],int * n)
 {
-	printf("请输入x的num次幂：");
-	scanf("%d%d",&x,&num);
-	printf("请输入模：");
-	scanf("%d",&m);
-}
- 
-void function(int x,int num,int m)
-{
-	int i = 0,j=0;
-	int r = 0;
-	int a[Max];
-	while(1)
+	int i = 0;
+	printf("请输入元素的个数：");
+	scanf("%d",n);                   //给指针赋值
+	for(i=0;i<*n;i++)                 
 	{
-		r = (int)(pow(x,i+1)) % m;
-		a[i] = r;
-		i++;
-		if(r == 1)
-			break;
-	}
-	printf("%d 的 %d 次幂模 %d 的余数为：%d\n",x,num,m,a[num % i -1]);
-} 
- 
- 
-//*****************此方法仅用来总结规律不用于计算***********************
-//不用计算两个数的乘积，可以转化位分别求出1992÷7和59÷7的余数的积，使计算简单化。
-//第一个余数是4，第二个余数是3.余数的乘积是12，除以7后的余数是5，所以1992×59除以7的余数是5.
-//简单记做因为1992×59≡4×3≡5（mod7）,所以余数是5.
- 
-void lj(int x,int num,int m)
-{
-	int i=0;
-	int r=0;
-	int a[Max];
-	while(i<6)  //i限制为6主要是因为幂指数过大会有内存溢出，次lj函数只是为了找规律
-	{
-		r = (int)(pow(x,i+1)) % m;
-		printf("%d的%d次幂对%d取余数为：%d\n",x,(i+1),m,r);
-		a[i] = r;
-		i++;
+		printf("请输入第%d个元素：",i+1);
+		scanf("%d",&num[i]);
 	}
 }
+//辗转相除法求最大公因数
+int qiuYushu(int a,int b)
+{
+	int r = a % b;
+	if(r==0)
+		return b;
+	else
+		return qiuYushu(b,r);
+}
  
-/*
-测试结果：
-	请输入x的num次幂：16 200（用16的200次幂对21求余数）
-	请输入模：21
-	a[0]:	16的1次幂对21取余数为：16
-	a[1]:	16的2次幂对21取余数为：4	16的2次幂对21取余数等于16的1次幂对21取余数（16）*16的1次幂对21取余数（16） = 16*16 % 21 = 256 % 21 = 4 
-	a[2]:	16的3次幂对21取余数为：1	16的3次幂对21取余数等于16的2次幂对21取余数（16）*16的1次幂对21取余数（16） = 4*16 % 21 = 64 % 21 = 1 
-	a[3]:	16的4次幂对21取余数为：16
-	a[4]:	16的5次幂对21取余数为：4
-	a[5]:	16的6次幂对21取余数为：1	
-		因此总结得出规律x的num次幂对m取余数可以先找出前n个，然后用 num % n 求出的余数即代表第几个余数
-*/
- 
-//****************************************************************************
- 
- 
+void function(int num[],int n)
+{
+	int i = 0,j = 0,k = 0;
+	for(i=0;i<n-1;i++)                       //n个数则外循环需要n-1次又因为从0开始所以<
+	{
+		for(j=i+1;j<n;j++)
+		{
+			val[k] = num[i] - num[j];
+			if(val[k]>0)                     //确保差值为正
+				val[k] = val[k];
+			else
+				val[k] = 0 - val[k];
+			k++;
+		}
+	}
+	//求val[0]和val[1]求最大公约数，然后再对t和val[i](i>=2)求最大公约数，一直到最后一个，得出val数组中的最大公约数即为所求！
+	int t = qiuYushu(val[0],val[1]);
+	for(i=2;i<n;i++)
+	{
+		t = qiuYushu(val[i],t);
+	}
+	printf("%d是这%d个数的最大除数\n",t,n);
+}
+
 int main()
 {
-	init();
+	init(num,&n);                    //这里n传递地址，否则在这个函数中n赋值后,出了这个函数n会消失
  
-	function(x,num,m);
+	function(num,n);
  
 	return 0;
 }
+/*若想赋值后直接变成全局变量
+     原来                                               现在
+  init(num,&n); .......................................init();
+  void init(int num[],int * n).........................void init()*/
