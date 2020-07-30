@@ -8,7 +8,7 @@ int factorial_function(int num)
 		return (factorial_function(num-1)*num);
 }
 //数组排序(从小到大)
-char *sort_function(char num[],int count)
+char sort_function(char num[],int count)
 {
     int i,j;
     int temp;
@@ -24,10 +24,10 @@ char *sort_function(char num[],int count)
             }
         }
     }
-    return num;
+    return 0;
 }
 //数组删除(选择后删除)
-char *delete_function(char num[],int n,int count)
+char delete_function(char num[],int n,int count)
 {
     int i;
     for(i=0;i<count;i++)
@@ -37,7 +37,7 @@ char *delete_function(char num[],int n,int count)
             num[i]=num[i+1];
         }
     }
-    return num;
+    return 0;
 }
 int main()
 {
@@ -53,7 +53,7 @@ int main()
         count++;                         //数字的长度
 
     }
-    *sort_function(num1,count),     
+    sort_function(num1,count),     
     printf("请输入位数：");
     scanf("%d",&sum1);
     sum2=sum1;
@@ -63,7 +63,7 @@ int main()
         k=sum1/factorial_function(count-(i+1));
         sum1%=factorial_function(count-(i+1));
         num2[i]=num1[k];
-        *delete_function(num1,k,count);
+        delete_function(num1,k,count);
     }
     printf("第%d的数是%s",sum2,num2);
     return 0;
