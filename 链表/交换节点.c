@@ -1,4 +1,4 @@
-//将节点1->2->3->4   转换为2->1->4->3
+//将节点 1->2->3->4   转换为 2->1->4->3
 #include<stdio.h>
 #include<malloc.h>
 struct stu
