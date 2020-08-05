@@ -46,5 +46,5 @@ int ArrayShift( int a[], int n, int m )
         }
         a[0]=temp;
     }
-    return 0;
+    return 0;                                           //返回值由函数类型决定 如：int return 0返回的是整型 int * 返回地址
 }
