@@ -40,7 +40,7 @@ void exchange(int a[],int n)
     {
         for(j=i;j>=0;j--)                    //找合适位置
         {
-            if(a[j]<a[j-1])
+            if(a[j]<a[j-1])                 //满足一直向前交换的条件
             {
                 temp=a[j];
                 a[j]=a[j-1];
