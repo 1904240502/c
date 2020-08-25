@@ -31,7 +31,7 @@ void exchange(int a[],int n)
 {
     int i,j;
     int temp;
-    for(i=1;i<n;i++)                               //外循环次数
+    for(i=0;i<n-1;i++)                               //外循环次数
     {
         for(j=0;j<n-i;j++)                         //每次从第一个开始，两两比较，后面是已经排序好的  所以到  元素个数-已尽循环次数 结束
         {
