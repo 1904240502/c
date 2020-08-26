@@ -1,0 +1,29 @@
+/*
+输入元素: 1
+2
+3
+4
+5
+你输入的是: 
+1
+2
+3
+4
+5
+*/
+#include <stdio.h>
+ 
+int main()
+{
+   int data[5], i;
+   printf("输入元素: ");
+ 
+   for(i = 0; i < 5; ++i)
+     scanf("%d", data + i);
+ 
+   printf("你输入的是: \n");
+   for(i = 0; i < 5; ++i)
+      printf("%d\n", *(data + i));
+ 
+   return 0;
+}
